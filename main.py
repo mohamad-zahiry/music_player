@@ -6,6 +6,7 @@ import os
 
 import tkinter as tk
 from tkinter import filedialog as tk_filedialog
+import vlc
 
 import player
 
@@ -89,6 +90,18 @@ music_list.bind("<<ListboxSelect>>", onselect)
 # ==============================================
 
 
+# =========================================
+# ============= start: Volume =============
+def set_volume(event):
+    player.audio_set_volume(int(volume.get()))
+
+
+volume = tk.Scale(root, from_=0, to=100, resolution=1, label="Volume", command=set_volume)
+volume.pack(side=tk.LEFT)
+# ============= end: Volume =============
+# =======================================
+
+
 # =================================================
 # ============= start: Duration scale =============
 """
@@ -138,6 +151,12 @@ duration.pack(side=tk.BOTTOM)
 # ===============================================
 
 
+# ============= Initialize primary values =============
+def initialize():
+    player.audio_set_volume(50)
+    volume.set(50)
+
+
 # ============= Updates duration scale =============
 def set_duration(ended):
     global is_mouse_pressed, end_of_program, player
@@ -153,6 +172,8 @@ def set_duration(ended):
 
 
 if __name__ == "__main__":
+    initialize()
+
     # Used for breaks the "set_duration" function
     thread_handler = lambda: end_of_program
 
