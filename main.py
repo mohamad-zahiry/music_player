@@ -102,6 +102,30 @@ volume.pack(side=tk.LEFT)
 # =======================================
 
 
+# ============================================
+# ============= start: Equalizer =============
+def set_equalizer(event):
+    player.set_equalizer(int(equalizer.get()))
+
+
+equalizer = tk.Scale(root, from_=-20, to=20, resolution=1, label="Amplifier", command=set_equalizer)
+equalizer.pack(side=tk.LEFT)
+# ============= end: Equalizer =============
+# ==========================================
+
+
+# =============================================
+# ============= start: Rate scale =============
+def set_rate(event):
+    player.set_rate(int(rate.get()) / 100)
+
+
+rate = tk.Scale(root, from_=30, to=300, resolution=1, label="speed", command=set_rate)
+rate.pack(side=tk.LEFT)
+# ============= end: Rate scale =============
+# ===========================================
+
+
 # =================================================
 # ============= start: Duration scale =============
 """
@@ -154,7 +178,9 @@ duration.pack(side=tk.BOTTOM)
 # ============= Initialize primary values =============
 def initialize():
     player.audio_set_volume(50)
+    equalizer.set(0)
     volume.set(50)
+    rate.set(100)
 
 
 # ============= Updates duration scale =============
