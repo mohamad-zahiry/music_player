@@ -37,7 +37,6 @@ root = CustomTk()
 root.title("Music Player")
 
 
-# ============================================================
 # ============= start: Add music to "Music List" =============
 # supported music types
 __music_types = [
@@ -69,10 +68,8 @@ def get_music_dir():
 add_path = tk.Button(root, text="Add Forlder", command=get_music_dir)
 add_path.pack(side=tk.BOTTOM)
 # ============= end: Add music to "Music List" =============
-# ==========================================================
 
 
-# ================================================
 # ============= start: Music ListBox =============
 def onselect(event):
     global player
@@ -87,10 +84,8 @@ music_list.pack(side=tk.LEFT)
 
 music_list.bind("<<ListboxSelect>>", onselect)
 # ============= end: Music ListBox =============
-# ==============================================
 
 
-# =========================================
 # ============= start: Volume =============
 def set_volume(event):
     player.audio_set_volume(int(volume.get()))
@@ -99,10 +94,8 @@ def set_volume(event):
 volume = tk.Scale(root, from_=0, to=100, resolution=1, label="Volume", command=set_volume)
 volume.pack(side=tk.LEFT)
 # ============= end: Volume =============
-# =======================================
 
 
-# ============================================
 # ============= start: Equalizer =============
 def set_equalizer(event):
     player.set_equalizer(int(equalizer.get()))
@@ -111,10 +104,8 @@ def set_equalizer(event):
 equalizer = tk.Scale(root, from_=-20, to=20, resolution=1, label="Amplifier", command=set_equalizer)
 equalizer.pack(side=tk.LEFT)
 # ============= end: Equalizer =============
-# ==========================================
 
 
-# =============================================
 # ============= start: Rate scale =============
 def set_rate(event):
     player.set_rate(int(rate.get()) / 100)
@@ -123,10 +114,8 @@ def set_rate(event):
 rate = tk.Scale(root, from_=30, to=300, resolution=1, label="speed", command=set_rate)
 rate.pack(side=tk.LEFT)
 # ============= end: Rate scale =============
-# ===========================================
 
 
-# =================================================
 # ============= start: Duration scale =============
 """
 Prevents "set_duration" from moving the "duration" scale
@@ -172,7 +161,6 @@ duration.bind("<ButtonRelease-1>", mouse_released)
 
 duration.pack(side=tk.BOTTOM)
 # ============= end: Duration scale =============
-# ===============================================
 
 
 # ============= Initialize primary values =============
