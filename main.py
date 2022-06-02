@@ -6,8 +6,6 @@ import os
 
 import tkinter as tk
 from tkinter import filedialog as tk_filedialog
-import vlc
-from PIL import Image, ImageTk
 
 import player
 
