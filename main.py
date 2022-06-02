@@ -7,6 +7,7 @@ import os
 import tkinter as tk
 from tkinter import filedialog as tk_filedialog
 import vlc
+from PIL import Image, ImageTk
 
 import player
 
@@ -122,6 +123,32 @@ rate.pack(side=tk.LEFT)
 # ============= end: Rate scale =============
 
 
+# ============= start: control buttons =============
+middle_frame = tk.Frame(root)
+middle_frame.pack(side=tk.TOP, expand=True)
+
+img_fast_backward = tk.PhotoImage(file="./icons/fast-backward.png")
+fast_backward = tk.Label(middle_frame, image=img_fast_backward)
+fast_backward.grid(column=0, row=0, padx=10)
+
+img_previous_song = tk.PhotoImage(file="./icons/previous.png")
+previous_song = tk.Label(middle_frame, image=img_previous_song)
+previous_song.grid(column=1, row=0, padx=10)
+
+img_pause_play = tk.PhotoImage(file="./icons/play.png")
+pause_play = tk.Label(middle_frame, image=img_pause_play)
+pause_play.grid(column=2, row=0, padx=10)
+
+img_next_song = tk.PhotoImage(file="./icons/next.png")
+next_song = tk.Label(middle_frame, image=img_next_song)
+next_song.grid(column=3, row=0, padx=10)
+
+img_fast_forward = tk.PhotoImage(file="./icons/fast-forward.png")
+fast_forward = tk.Label(middle_frame, image=img_fast_forward)
+fast_forward.grid(column=4, row=0, padx=10)
+# ============= end: control buttons =============
+
+
 # ============= start: Duration scale =============
 """
 Prevents "set_duration" from moving the "duration" scale
@@ -152,11 +179,10 @@ def mouse_released(event):
 
 
 duration = tk.Scale(
-    root,
+    middle_frame,
     from_=0,
     to=100,
     resolution=1,
-    label="Duration",
     orient=tk.HORIZONTAL,
 )
 
@@ -165,7 +191,8 @@ duration.bind("<ButtonPress-1>", mouse_pressed)
 # bind "Left Click Released"
 duration.bind("<ButtonRelease-1>", mouse_released)
 
-duration.pack(side=tk.BOTTOM)
+duration.config(length=250)
+duration.grid(column=0, row=1, columnspan=5)
 # ============= end: Duration scale =============
 
 
