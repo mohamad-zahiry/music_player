@@ -66,12 +66,16 @@ def get_music_dir():
     music_list.insert(0, *music_names)
 
 
-add_path = tk.Button(root, text="Add Forlder", command=get_music_dir)
+add_path = tk.Button(root, text="Add Music", command=get_music_dir)
 add_path.pack(side=tk.BOTTOM)
 # ============= end: Add music to "Music List" =============
 
 
 # ============= start: Music ListBox =============
+bottom_frame = tk.Frame(root, pady=20)
+bottom_frame.pack(side=tk.TOP)
+
+
 def onselect(event):
     global player
     cur_select = music_list.get(music_list.curselection())
@@ -80,8 +84,9 @@ def onselect(event):
     player.play()
 
 
-music_list = tk.Listbox(root, selectmode=tk.SINGLE)
-music_list.pack(side=tk.LEFT)
+music_list = tk.Listbox(bottom_frame, selectmode=tk.SINGLE)
+music_list.config(width=32)
+music_list.pack(side=tk.BOTTOM)
 
 music_list.bind("<<ListboxSelect>>", onselect)
 # ============= end: Music ListBox =============
