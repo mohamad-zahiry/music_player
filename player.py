@@ -12,7 +12,8 @@ class Player:
             return self.player.__getattribute__(name)
 
     def set_audio(self, path):
-        self.player = vlc.MediaPlayer(path)
+        media = vlc.Media(path)
+        self.player.set_media(media)
 
     def set_equalizer(self, n: int):
         p_equalizer = vlc.AudioEqualizer()
