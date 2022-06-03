@@ -130,25 +130,59 @@ rate.pack(side=tk.LEFT)
 middle_frame = tk.Frame(root)
 middle_frame.pack(side=tk.TOP, expand=True)
 
+
+def fast_backward_command(event):
+    """backward 30 seconds"""
+    player.set_time(player.get_time() - 30 * 1000)
+
+
+def fast_forward_command(event):
+    """forward 30 seconds"""
+    player.set_time(player.get_time() + 30 * 1000)
+
+
+def play_pause_command(event):
+    global player
+    player.pause()
+    if player.is_playing():
+        pause_play.config(image=img_pause)
+    else:
+        pause_play.config(image=img_play)
+
+
+def next_command(event):
+    pass
+
+
+def previous_command(event):
+    pass
+
+
 img_fast_backward = tk.PhotoImage(file="./icons/fast-backward.png")
 fast_backward = tk.Label(middle_frame, image=img_fast_backward)
 fast_backward.grid(column=0, row=0, padx=10)
+fast_backward.bind("<Button-1>", fast_backward_command)
 
 img_previous_song = tk.PhotoImage(file="./icons/previous.png")
 previous_song = tk.Label(middle_frame, image=img_previous_song)
 previous_song.grid(column=1, row=0, padx=10)
+previous_song.bind("<Button-1>", previous_command)
 
-img_pause_play = tk.PhotoImage(file="./icons/play.png")
-pause_play = tk.Label(middle_frame, image=img_pause_play)
+img_pause = tk.PhotoImage(file="./icons/pause.png")
+img_play = tk.PhotoImage(file="./icons/play.png")
+pause_play = tk.Label(middle_frame, image=img_pause)
 pause_play.grid(column=2, row=0, padx=10)
+pause_play.bind("<Button-1>", play_pause_command)
 
 img_next_song = tk.PhotoImage(file="./icons/next.png")
 next_song = tk.Label(middle_frame, image=img_next_song)
 next_song.grid(column=3, row=0, padx=10)
+next_song.bind("<Button-1>", next_command)
 
 img_fast_forward = tk.PhotoImage(file="./icons/fast-forward.png")
 fast_forward = tk.Label(middle_frame, image=img_fast_forward)
 fast_forward.grid(column=4, row=0, padx=10)
+fast_forward.bind("<Button-1>", fast_forward_command)
 # ============= end: control buttons =============
 
 
