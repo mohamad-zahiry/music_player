@@ -91,7 +91,7 @@ music_list.bind("<<ListboxSelect>>", onselect)
 
 
 # ========= start: topframe =========
-setting_frame = tk.Frame(root)
+setting_frame = tk.Frame(root, pady=15)
 setting_frame.pack(side=tk.TOP)
 # ========= end: topframe =========
 
