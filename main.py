@@ -101,7 +101,16 @@ def set_volume(event):
     player.audio_set_volume(int(volume.get()))
 
 
-volume = tk.Scale(setting_frame, from_=0, to=100, resolution=1, label="Volume", command=set_volume)
+volume = tk.Scale(
+    setting_frame,
+    from_=0,
+    to=100,
+    resolution=1,
+    label="Volume",
+    sliderlength=20,
+    troughcolor="#30a9c6",
+    command=set_volume,
+)
 volume.pack(side=tk.LEFT)
 # ============= end: Volume =============
 
@@ -111,7 +120,16 @@ def set_equalizer(event):
     player.set_equalizer(int(equalizer.get()))
 
 
-equalizer = tk.Scale(setting_frame, from_=-20, to=20, resolution=1, label="Amplifier", command=set_equalizer)
+equalizer = tk.Scale(
+    setting_frame,
+    from_=-20,
+    to=20,
+    resolution=1,
+    label="Amplifier",
+    sliderlength=20,
+    troughcolor="#30a9c6",
+    command=set_equalizer,
+)
 equalizer.pack(side=tk.LEFT)
 # ============= end: Equalizer =============
 
@@ -121,7 +139,16 @@ def set_rate(event):
     player.set_rate(int(rate.get()) / 100)
 
 
-rate = tk.Scale(setting_frame, from_=30, to=300, resolution=1, label="speed", command=set_rate)
+rate = tk.Scale(
+    setting_frame,
+    from_=30,
+    to=300,
+    resolution=1,
+    label="speed",
+    sliderlength=20,
+    troughcolor="#30a9c6",
+    command=set_rate,
+)
 rate.pack(side=tk.LEFT)
 # ============= end: Rate scale =============
 
