@@ -190,11 +190,21 @@ def play_pause_command(event):
 
 
 def next_command(event):
-    pass
+    music_list.selection_clear(playlist.cur_song)
+    music, path = playlist.next()
+    player.stop()
+    player.set_audio(path)
+    player.play()
+    music_list.select_set(playlist.cur_song)
 
 
 def previous_command(event):
-    pass
+    music_list.selection_clear(playlist.cur_song)
+    music, path = playlist.previous()
+    player.stop()
+    player.set_audio(path)
+    player.play()
+    music_list.select_set(playlist.cur_song)
 
 
 img_fast_backward = tk.PhotoImage(file="./icons/fast-backward.png")
