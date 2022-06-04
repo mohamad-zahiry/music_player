@@ -8,6 +8,7 @@ import tkinter as tk
 from tkinter import filedialog as tk_filedialog
 
 import player
+import play_list
 
 
 """
@@ -30,6 +31,9 @@ class CustomTk(tk.Tk):
 
 # global audio player
 player = player.Player()
+
+# global play list
+playlist = play_list.PlayList()
 
 
 root = CustomTk()
