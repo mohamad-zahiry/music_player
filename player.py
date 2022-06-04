@@ -21,6 +21,4 @@ class Player:
         self.player.set_equalizer(p_equalizer)
 
     def get_position_percent(self):
-        if self.player.is_playing():
-            return round(self.player.get_position() * 100)
-        return 0
+        return round(self.player.get_position() * 100)
