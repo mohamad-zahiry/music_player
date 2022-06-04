@@ -65,7 +65,14 @@ def get_music_dir():
         title="Please select one or more files:",
         filetypes=__music_types,
     )
-    music_list.insert(0, *music_names)
+
+    for path in music_names:
+        playlist.add_music(path)
+
+    music_list.delete(0, tk.END)
+
+    for (music, path) in playlist.get_all_songs():
+        music_list.insert(tk.END, music)
 
 
 add_path = tk.Button(root, text="Add Music", command=get_music_dir)
