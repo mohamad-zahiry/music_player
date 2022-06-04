@@ -87,9 +87,10 @@ bottom_frame.pack(side=tk.TOP)
 
 def onselect(event):
     global player
-    cur_select = music_list.get(music_list.curselection())
+    cur_select_index = music_list.curselection()[0]
+    music, path = playlist.get_song(cur_select_index)
     player.stop()
-    player.set_audio(cur_select)
+    player.set_audio(path)
     player.play()
 
 
