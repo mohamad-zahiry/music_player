@@ -209,7 +209,7 @@ def next_command(event):
 
 def previous_command(event):
     music_list.selection_clear(playlist.cur_song)
-    play_new_song(playlist.next()[1])
+    play_new_song(playlist.previous()[1])
     music_list.select_set(playlist.cur_song)
 
 
