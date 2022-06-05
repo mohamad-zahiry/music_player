@@ -6,6 +6,8 @@ class Player:
         self.player = vlc.MediaPlayer()
 
     def __getattribute__(self, name: str):
+        """vlc prevents from inheritance, so I overwrites __getattribute__
+        to use the attributes of vlc.MediaPlayer"""
         try:
             return super().__getattribute__(name)
         except AttributeError:
