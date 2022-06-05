@@ -320,9 +320,16 @@ def set_duration(ended):
         if not is_mouse_pressed:
             pos_in_percent = player.get_position_percent()
             duration.set(pos_in_percent)
+
+            # convert player_time to minutes and seconds for time_variable
+            current_time = max(0, player.get_time() // 1000)
+            seconds = str(current_time % 60).zfill(2)
+            minutes = str(current_time // 60).zfill(2)
+            time_variable.set(f"{minutes}:{seconds}")
+
             # The "time.sleep" must used here. If doesn't,
             # the thread lock prevent program to stop
-            time.sleep(0.01)
+            time.sleep(0.2)
 
 
 if __name__ == "__main__":
