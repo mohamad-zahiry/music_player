@@ -91,12 +91,12 @@ def get_music_dir():
 
 
 add_path = tk.Button(root, text="Add Music", command=get_music_dir)
-add_path.pack(side=tk.BOTTOM)
+add_path.pack(side=tk.TOP, pady=5)
 # ============= end: Add music to "Music List" =============
 
 
 # ============= start: Music ListBox =============
-bottom_frame = tk.Frame(root, pady=20)
+bottom_frame = tk.Frame(root, pady=5)
 bottom_frame.pack(side=tk.TOP)
 
 
