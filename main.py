@@ -213,31 +213,41 @@ def previous_command(event):
     music_list.select_set(playlist.cur_song)
 
 
+def repeat_command(event):
+    play_new_song(playlist.get_song(playlist.cur_song)[1])
+
+
 img_fast_backward = tk.PhotoImage(file="./icons/fast-backward.png")
 fast_backward = tk.Label(middle_frame, image=img_fast_backward)
-fast_backward.grid(column=0, row=0, padx=10)
+fast_backward.grid(column=0, row=1, padx=15, pady=5)
 fast_backward.bind("<Button-1>", fast_backward_command)
 
 img_previous_song = tk.PhotoImage(file="./icons/previous.png")
 previous_song = tk.Label(middle_frame, image=img_previous_song)
-previous_song.grid(column=1, row=0, padx=10)
+previous_song.grid(column=1, row=1, padx=15, pady=5)
 previous_song.bind("<Button-1>", previous_command)
 
 img_pause = tk.PhotoImage(file="./icons/pause.png")
 img_play = tk.PhotoImage(file="./icons/play.png")
 pause_play = tk.Label(middle_frame, image=img_pause)
-pause_play.grid(column=2, row=0, padx=10)
+pause_play.grid(column=2, row=1, padx=15, pady=5)
 pause_play.bind("<Button-1>", play_pause_command)
 
 img_next_song = tk.PhotoImage(file="./icons/next.png")
 next_song = tk.Label(middle_frame, image=img_next_song)
-next_song.grid(column=3, row=0, padx=10)
+next_song.grid(column=3, row=1, padx=15, pady=5)
 next_song.bind("<Button-1>", next_command)
 
 img_fast_forward = tk.PhotoImage(file="./icons/fast-forward.png")
 fast_forward = tk.Label(middle_frame, image=img_fast_forward)
-fast_forward.grid(column=4, row=0, padx=10)
+fast_forward.grid(column=4, row=1, padx=15, pady=5)
 fast_forward.bind("<Button-1>", fast_forward_command)
+
+
+img_repeat = tk.PhotoImage(file="./icons/repeat.png")
+repeat = tk.Label(middle_frame, image=img_repeat)
+repeat.grid(column=0, row=0)
+repeat.bind("<Button-1>", repeat_command)
 # ============= end: control buttons =============
 
 
@@ -275,6 +285,8 @@ duration = tk.Scale(
     from_=0,
     to=100,
     resolution=1,
+    showvalue=False,
+    length=140,
     orient=tk.HORIZONTAL,
 )
 
@@ -283,10 +295,13 @@ duration.bind("<ButtonPress-1>", mouse_pressed)
 # bind "Left Click Released"
 duration.bind("<ButtonRelease-1>", mouse_released)
 
-duration.config(length=250)
-duration.grid(column=0, row=1, columnspan=5)
+duration.grid(column=1, row=0, columnspan=3)
 # ============= end: Duration scale =============
 
+
+time_variable = tk.StringVar()
+player_time = tk.Label(middle_frame, text="00:00", textvariable=time_variable)
+player_time.grid(column=4, row=0)
 
 # ============= Initialize primary values =============
 def initialize():
