@@ -29,6 +29,21 @@ class CustomTk(tk.Tk):
         return super().destroy()
 
 
+def play_new_song(path):
+    """Used for playing song. Initiate default values for each song"""
+    # palys the new song
+    player.stop()
+    player.set_audio(path)
+    player.play()
+
+    # reseting volume, equalizer, rate
+    volume.set(100)
+    equalizer.set(0)
+    rate.set(100)
+    # sets play icon for pause_play button
+    pause_play.config(image=img_play)
+
+
 # global audio player
 player = player.Player()
 
@@ -88,10 +103,7 @@ bottom_frame.pack(side=tk.TOP)
 def onselect(event):
     global player
     cur_select_index = music_list.curselection()[0]
-    music, path = playlist.get_song(cur_select_index)
-    player.stop()
-    player.set_audio(path)
-    player.play()
+    play_new_song(playlist.get_song(cur_select_index)[1])
 
 
 music_list = tk.Listbox(bottom_frame, selectmode=tk.SINGLE)
@@ -191,19 +203,13 @@ def play_pause_command(event):
 
 def next_command(event):
     music_list.selection_clear(playlist.cur_song)
-    music, path = playlist.next()
-    player.stop()
-    player.set_audio(path)
-    player.play()
+    play_new_song(playlist.next()[1])
     music_list.select_set(playlist.cur_song)
 
 
 def previous_command(event):
     music_list.selection_clear(playlist.cur_song)
-    music, path = playlist.previous()
-    player.stop()
-    player.set_audio(path)
-    player.play()
+    play_new_song(playlist.next()[1])
     music_list.select_set(playlist.cur_song)
 
 
