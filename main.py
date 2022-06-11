@@ -6,6 +6,7 @@ import os
 
 import tkinter as tk
 from tkinter import filedialog as tk_filedialog
+from tkinter import simpledialog as tk_simpledialog
 
 import player
 import play_list
@@ -197,6 +198,15 @@ def fast_forward_command(event):
     player.set_time(player.get_time() + fast_forward_backward_value * 1000)
 
 
+def change_fast_forward_backward_value(event):
+    global fast_forward_backward_value
+    value = tk_simpledialog.askinteger(
+        "fast forward|backward value",
+        prompt="enter second(s):",
+        parent=root
+    )
+    if value:
+        fast_forward_backward_value = value
 
 def play_pause_command(event):
     global player
@@ -227,6 +237,7 @@ img_fast_backward = tk.PhotoImage(file="./icons/fast-backward.png")
 fast_backward = tk.Label(middle_frame, image=img_fast_backward)
 fast_backward.grid(column=0, row=1, padx=15, pady=5)
 fast_backward.bind("<Button-1>", fast_backward_command)
+fast_backward.bind("<Button-3>", change_fast_forward_backward_value)
 
 img_previous_song = tk.PhotoImage(file="./icons/previous.png")
 previous_song = tk.Label(middle_frame, image=img_previous_song)
@@ -248,6 +259,7 @@ img_fast_forward = tk.PhotoImage(file="./icons/fast-forward.png")
 fast_forward = tk.Label(middle_frame, image=img_fast_forward)
 fast_forward.grid(column=4, row=1, padx=15, pady=5)
 fast_forward.bind("<Button-1>", fast_forward_command)
+fast_forward.bind("<Button-3>", change_fast_forward_backward_value)
 
 
 img_repeat = tk.PhotoImage(file="./icons/repeat.png")
