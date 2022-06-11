@@ -190,12 +190,18 @@ middle_frame.pack(side=tk.TOP, expand=True)
 
 def fast_backward_command(event):
     """backward 30 seconds"""
-    player.set_time(player.get_time() - fast_forward_backward_value * 1000)
+    new_time = player.get_time() - fast_forward_backward_value * 1000
+    if new_time < 0:
+        new_time = 0
+    player.set_time(new_time)
 
 
 def fast_forward_command(event):
     """forward 30 seconds"""
-    player.set_time(player.get_time() + fast_forward_backward_value * 1000)
+    new_time = player.get_time() + fast_forward_backward_value * 1000
+    if new_time > player.get_length():
+        new_time = player.get_length()
+    player.set_time(new_time)
 
 
 def change_fast_forward_backward_value(event):
