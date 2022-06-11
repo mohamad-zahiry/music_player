@@ -17,6 +17,11 @@ If True: the duration-thread stops
 """
 end_of_program = False
 
+"""
+fast forward|backward button value
+default is 10 seconds
+"""
+fast_forward_backward_value = 10
 
 class CustomTk(tk.Tk):
     def destroy(self) -> None:
@@ -184,12 +189,13 @@ middle_frame.pack(side=tk.TOP, expand=True)
 
 def fast_backward_command(event):
     """backward 30 seconds"""
-    player.set_time(player.get_time() - 30 * 1000)
+    player.set_time(player.get_time() - fast_forward_backward_value * 1000)
 
 
 def fast_forward_command(event):
     """forward 30 seconds"""
-    player.set_time(player.get_time() + 30 * 1000)
+    player.set_time(player.get_time() + fast_forward_backward_value * 1000)
+
 
 
 def play_pause_command(event):
