@@ -219,11 +219,11 @@ def change_fast_forward_backward_value(event):
 
 def play_pause_command(event):
     global player
-    player.pause()
     if player.is_playing():
         pause_play.config(image=img_pause)
     else:
         pause_play.config(image=img_play)
+    player.pause()
 
 
 def next_command(event):
