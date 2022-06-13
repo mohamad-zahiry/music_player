@@ -43,8 +43,11 @@ def play_new_song(path):
     player.play()
 
     # reseting volume, equalizer, rate
+    player.audio_set_volume(100)
     volume.set(100)
+    player.set_equalizer(0)
     equalizer.set(0)
+    player.set_rate(1)
     rate.set(100)
     # sets play icon for pause_play button
     pause_play.config(image=img_play)
